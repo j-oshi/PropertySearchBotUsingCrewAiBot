@@ -21,8 +21,8 @@ search_tool = SerperDevTool()
 researcher = Agent(
     llm=llm,
     role='Senior Property Researcher',
-    goal='Find promising investment properties.',
-    backstory="You are a veteran property analyst. In this case you're looking for flats to rent clients.",
+    goal='Find affordable properties for clients.',
+    backstory="You are a veteran property analyst. In this case you're looking for affordable flats or houses advertised for rent.",
     verbose=True,
     allow_delegation=False,
     tools=[search_tool]
@@ -30,13 +30,13 @@ researcher = Agent(
 
 # Create tasks for your agents
 task1 = Task(
-    description="""Search the internet and find 10 promising flats in Kent, UK. For each flat, highlight the mean, low, and max prices, as well as the rental yield and any potential factors that would be useful to know for that area..""",
-    expected_output="""A detailed report of each of the flats. The results should be formatted as shown below:
+    description="""Search the internet and find 10 promising properties near Ashford, Kent, UK. For each property, highlight the distance for nearest train to travel London.""",
+    expected_output="""A detailed report of each of property. The results should be formatted as shown below:
 
     Flat 1: ExampleFlat
+    PropertyType: Flat
     Estimated Monthly Rent: £1,350  (assuming annual rent equals mean price x rental yield)
-    Estimated Rent Range: £900 - £1,800 per month (based on +/- 20% around the mean)
-    Background Information: Located near major transport hubs, employment centers, and educational institutions. This list highlights some of the top contenders for investment opportunities.""",
+    Background Information: Located near major transport hubs.""",
     agent=researcher,
     output_file="kent_investment_properties.txt",
 )
@@ -45,9 +45,9 @@ writer = Agent(
     llm=llm,
     role='Senior Property Analyst',
     goal='Summarise property facts into a report for renters',
-    backstory=""""You are a real estate agent, your goal is to compile property analytics into a report for potential investors.""",
+    backstory="""You are a real estate agent, your goal is to compile property analytics into a report for potential real estate agents.""",
     verbose=True,
-    allow_delegation=True
+    allow_delegation=False
 )
 
 task2 = Task(
