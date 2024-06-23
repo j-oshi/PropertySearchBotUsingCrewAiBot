@@ -54,7 +54,7 @@ task2 = Task(
     description="Summarise the property information into bullet point list.",
     expected_output="A summarised dot point list of each of the area, prices and important features of that area.",
     agent=writer,
-    output_file="kent_investment_properties.txt",
+    output_file="kent_investment_properties2.txt",
 )
 
 # Instantiate your crew with a sequential process
